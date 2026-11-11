@@ -41,6 +41,10 @@ const argv = optimist
         default: 60000,
         describe:
             'milliseconds to wait for a client to (re)connect before destroying the tunnel (default: 60000)'
+    })
+    .options('range', {
+        default: null,
+        describe: 'will bind incoming connections only on ports in range xxx:xxxx'
     }).argv;
 
 if (argv.help) {
@@ -53,6 +57,7 @@ const server = CreateServer({
     secure: argv.secure,
     domain: argv.domain,
     landing: argv.landing,
+    range: argv.range,
     grace_timeout: argv['grace-timeout'],
 });
 
